@@ -1,4 +1,4 @@
-package com.template
+package com.template.flows
 
 import net.corda.testing.node.*
 import org.junit.After
@@ -8,7 +8,6 @@ import com.template.states.TemplateState
 import java.util.concurrent.Future;
 import net.corda.core.node.services.vault.QueryCriteria
 import net.corda.core.transactions.SignedTransaction
-import com.template.flows.Initiator
 import net.corda.core.identity.CordaX500Name
 import net.corda.core.node.services.Vault.StateStatus
 
