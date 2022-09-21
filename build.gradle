@@ -113,14 +113,18 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         name "O=Notary,L=London,C=GB"
         notary = [validating : false]
         p2pPort 10002
+        h2Port  20002
+        sshdPort 2222
         rpcSettings {
             address("localhost:10003")
             adminAddress("localhost:10043")
         }
     }
     node {
-        name "O=PartyA,L=London,C=GB"
+        name "O=Mint,L=London,C=GB"
         p2pPort 10005
+        h2Port  20005
+        sshdPort 3333
         rpcSettings {
             address("localhost:10006")
             adminAddress("localhost:10046")
@@ -128,13 +132,25 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
     node {
-        name "O=PartyB,L=New York,C=US"
+        name "O=TraderA,L=New York,C=US"
         p2pPort 10008
+        h2Port  20008
+        sshdPort 4444
         rpcSettings {
             address("localhost:10009")
             adminAddress("localhost:10049")
         }
         rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
-
+    node {
+        name "O=TraderB,L=New York,C=US"
+        p2pPort 10010
+        h2Port  20010
+        sshdPort 5555
+        rpcSettings {
+            address("localhost:10011")
+            adminAddress("localhost:10050")
+        }
+        rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
+    }
 }
