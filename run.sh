@@ -46,6 +46,13 @@ usage(){
   cat <<EOF
 $0 nodes <start|stop>              Starts or stops the corda nodes
 $0 shell <mint|tradera|traderb>    Connects to the given corda node's shell via SSH
+
+When connecting via SSH you can execute the following commands on the corda node's shell to test the metals-cordapp:
+
+corda>>> flow start IssueMetalFlow material: Gold, weight: 10, owner: "O=TraderA,L=New York,C=US"        # nodes: mint
+corda>>> run vaultQuery contractStateType: com.acmecorp.states.MetalState                                # nodes: mint, tradera
+corda>>> flow start TransferMetalFlow material: Gold, weight: 10, newOwner: "O=TraderB,L=New York,C=US"  # nodes: tradera
+corda>>> run vaultQuery contractStateType: com.acmecorp.states.MetalState                                # nodes: mint, tradera, traderb
 EOF
 }
 
